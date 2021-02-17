@@ -12,26 +12,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Http\Controllers\EventController;
 
-Route::get('/', function () {
-
-    $nome = "Pedro";
-    $idade = 25;
-    $profissao = "Desenvolvimento";
-
-    $nomes = ["Mateus", "Pedro", "Maria", "Ana", "Sabrinna"];
-
-    $arr = [10,20,40,50,60];
-
-    return view('welcome', 
-    [
-        'nome' => $nome, 'idade' => $idade,
-        'profissao' => $profissao,
-        'arr' => $arr,
-        'nomes' => $nomes
-        ]);
-});
+Route::get('/', [EventController::class, 'index']);
+Route::get('/events/create', [EventController::class, 'create']);
 
 Route::get('/contact', function () {
     return view('contacts');
+});
+
+Route::get('/products', function () {
+
+    $busca = request('search');
+
+    return view('products', ['busca' => $busca]);
+});
+
+Route::get('/products/{id}', function($id){
+    return view('product', ['id' => $id]);
 });
