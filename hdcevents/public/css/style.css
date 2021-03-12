@@ -197,8 +197,12 @@ header{
     margin-top:30px;
 }
 
-.dashboard-events-container th{
+.dashboard-event-container th{
     width:25%;
+}
+
+.dashboard-event-container form{
+    display: inline-block;
 }
 
 /* footer */
