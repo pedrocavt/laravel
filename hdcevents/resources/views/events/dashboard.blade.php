@@ -60,9 +60,15 @@
                 <th scope="row">{{ $loop->index + 1}}</th>
                 <td><a href="/events/{{$event->id}}">{{$event->title}}</a></td>
                 <td>{{count($event->users)}}</td>
-               <td>
-                   <a href="#">Sair do evento</a>
-               </td>
+                <td>    
+                    <form action="/events/leave/{{$event->id}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                        <button type="submit" class="btn btn-danger delete-btn">
+                            <ion-icon name="trash-outline"></ion-icon> Sair do Evento
+                        </button>    
+                </form>
+                </td>
             </tr>
         @endforeach
     </tbody>
