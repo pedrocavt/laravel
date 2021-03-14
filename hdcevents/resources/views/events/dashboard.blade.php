@@ -23,7 +23,7 @@
             <tr>
                 <th scope="row">{{ $loop->index + 1}}</th>
                 <td><a href="/events/{{$event->id}}">{{$event->title}}</a></td>
-                <td>0</td>
+                <td>{{count($event->users)}}</td>
                 <td><a href="/events/edit/{{$event->id}}" class="btn btn-info edit-btn"><ion-icon name="create-outline"></ion-icon> Editar</a> 
                 <form action="/events/{{$event->id}}" method="POST">
                     @csrf
@@ -39,4 +39,36 @@
    @endif
 </div>
 
+<div class="col-md-10 offset-md-1 dashboard-title-container">
+    <h1>Eventos que estou</h1>
+    <p></p>
+</div>
+<div class="col-md-10 offset-md-1 dashboard-event-container">
+@if(count($eventsasparticipant) > 0)
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Participantes</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>    
+        @foreach($eventsasparticipant as $event)
+            <tr>
+                <th scope="row">{{ $loop->index + 1}}</th>
+                <td><a href="/events/{{$event->id}}">{{$event->title}}</a></td>
+                <td>{{count($event->users)}}</td>
+               <td>
+                   <a href="#">Sair do evento</a>
+               </td>
+            </tr>
+        @endforeach
+    </tbody>
+   </table>
+@else
+    <p>Você não esta participante de nenhum projeto, <a href="/">veja todos</a></p>
+@endif
+</div>
 @endsection
